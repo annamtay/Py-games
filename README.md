@@ -1,3 +1,3 @@
-# Coin Flip game 
+# PY games 
 
-This is a project to support my learning Python :)
+This is a project of different games to support my learning Python :)
