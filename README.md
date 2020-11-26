@@ -1,3 +1,3 @@
-# test
+# Coin Flip game 
 
-This is a test project to learn how to use git
+This is a project to support my learning Python :)
