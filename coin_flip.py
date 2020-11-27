@@ -1,4 +1,5 @@
 import random
+import time
 
 # define
 POSITIVE_RESPONSES = ['Yes', 'yes', 'Sure', 'Why not', 'Yep', 'Yes please']
@@ -11,7 +12,10 @@ def coin_flip_game(user_h_or_t):
     past_flips = []
     flip = random.choice(COIN_OPTIONS)
     past_flips.append(flip)
-    print("And the coin says...\n..\n.\n" + flip)
+    print("And the coin says...\n..\n.\n")
+    time.sleep(3)
+    print(flip)
+    time.sleep(1)
     if user_h_or_t == flip:
         print("We have a Winner!!!")
     else:
@@ -32,6 +36,8 @@ def starting_the_game():
         if user_h_or_t not in COIN_OPTIONS:
             print("I don\'t understand your answer.")
         elif user_h_or_t in COIN_OPTIONS:
+            print("You guessed " + user_h_or_t)
+            time.sleep(1)
             coin_flip_game(user_h_or_t)
     else:
         return("I don\'t understand your answer. Let\'s try again in the future")
@@ -39,3 +45,15 @@ def starting_the_game():
 
 
 print(starting_the_game())
+
+
+# #fucntion to count coin flips - take a list of 'Heads' or 'Tails' and will return the count
+# def counting_coin_flips(past_flips):
+#     count_heads = 0
+#     count_tails = 0
+#     for flip in past_flips:
+#         if flip == 'Heads':
+#             count_heads += 1
+#         elif flip == 'Tails':
+#             count_tails += 1
+#     return count_heads, count_tails
