@@ -5,17 +5,17 @@ import time
 POSITIVE_RESPONSES = ['Yes', 'yes', 'Sure', 'Why not', 'Yep', 'Yes please']
 NEGATIVE_RESPONSES = ['Nope', 'No', 'no', 'Nah', 'No way', 'No thanks']
 ACCEPTED_RESPONSES = POSITIVE_RESPONSES + NEGATIVE_RESPONSES
-COIN_OPTIONS = ['Heads', 'Tails']
+COIN_OPTIONS = ['heads', 'tails']
 
 
 # Function to verify if a user wants to play a game
 def yes_or_no():
     answers = []
-    answer = input(print("Would you like to play a game?\n"))
+    answer = input("Would you like to play a game?\n")
     answers.append(answer)
     while answer not in ACCEPTED_RESPONSES:
         print("Sorry I don\'t understand your answer.")
-        answer = input(print("Yes or no? \n"))
+        answer = input("Yes or no? \n")
         answers.append(answer)
         if answers[-1] in ACCEPTED_RESPONSES:
             break
@@ -24,9 +24,8 @@ def yes_or_no():
     elif answers[-1] in NEGATIVE_RESPONSES:
         return "FINE GAME OVER"
 
-
 # function to flip the coin and return winner or loser
-def coin_flip_game(user_h_or_t):
+def coin_flip_game(user_h_or_t_use):
     past_flips = []
     flip = random.choice(COIN_OPTIONS)
     past_flips.append(flip)
@@ -34,7 +33,7 @@ def coin_flip_game(user_h_or_t):
     time.sleep(3)
     print(flip)
     time.sleep(1)
-    if user_h_or_t == flip:
+    if user_h_or_t_use == flip:
         print("We have a Winner!!!")
     else:
         print("Unlucky - maybe you\'ll win next time :(")
@@ -50,11 +49,13 @@ def starting_the_game():
         return "Oh no - that\'s a shame! Maybe next time!"
     elif decision1_stripped in POSITIVE_RESPONSES:
         user_h_or_t = input("Woohoo! Heads or Tails? \n")
-        if user_h_or_t in COIN_OPTIONS:
-            print("You guessed " + user_h_or_t)
+        user_h_or_t_stripped = user_h_or_t.strip()
+        user_h_or_t_use = user_h_or_t_stripped.lower()
+        if user_h_or_t_use in COIN_OPTIONS:
+            print("You guessed " + user_h_or_t_use)
             time.sleep(1)
-            coin_flip_game(user_h_or_t)
-        elif user_h_or_t not in COIN_OPTIONS:
+            coin_flip_game(user_h_or_t_use)
+        elif user_h_or_t_use not in COIN_OPTIONS:
             print("I don\'t understand your answer.")
     else:
         return("I don\'t understand your answer. Let\'s try again in the future")
