@@ -9,9 +9,8 @@ COIN_OPTIONS = ['heads', 'tails']
 
 
 # Function to verify if a user wants to play a game
-def yes_or_no():
+def yes_or_no(answer):
     answers = []
-    answer = input("Would you like to play a game?\n")
     answers.append(answer)
     while answer not in ACCEPTED_RESPONSES:
         print("Sorry I don\'t understand your answer.")
@@ -22,7 +21,8 @@ def yes_or_no():
     if answers[-1] in POSITIVE_RESPONSES:
         print("Woohoo let\'s play")
     elif answers[-1] in NEGATIVE_RESPONSES:
-        return "FINE GAME OVER"
+        print("FINE GAME OVER")
+        return "Thanks for playing!"
 
 # function to flip the coin and return winner or loser
 def coin_flip_game(user_h_or_t_use):
@@ -45,21 +45,18 @@ def coin_flip_game(user_h_or_t_use):
 def starting_the_game():
     decision1 = input("Would you like to play a game? \n")
     decision1_stripped = decision1.strip()
-    if decision1_stripped in NEGATIVE_RESPONSES:
-        return "Oh no - that\'s a shame! Maybe next time!"
-    elif decision1_stripped in POSITIVE_RESPONSES:
-        user_h_or_t = input("Woohoo! Heads or Tails? \n")
-        user_h_or_t_stripped = user_h_or_t.strip()
-        user_h_or_t_use = user_h_or_t_stripped.lower()
-        if user_h_or_t_use in COIN_OPTIONS:
-            print("You guessed " + user_h_or_t_use)
-            time.sleep(1)
-            coin_flip_game(user_h_or_t_use)
-        elif user_h_or_t_use not in COIN_OPTIONS:
-            print("I don\'t understand your answer.")
-    else:
-        return("I don\'t understand your answer. Let\'s try again in the future")
+    yes_or_no(decision1_stripped)
+    user_h_or_t = input("Heads or Tails? \n")
+    user_h_or_t_stripped = user_h_or_t.strip()
+    user_h_or_t_use = user_h_or_t_stripped.lower()
+    if user_h_or_t_use in COIN_OPTIONS:
+        print("You guessed " + user_h_or_t_use)
+        time.sleep(1)
+        coin_flip_game(user_h_or_t_use)
+    elif user_h_or_t_use not in COIN_OPTIONS:
+        print("I don\'t understand your answer.")
     return "Thanks for playing!"
+
 
 
 print(starting_the_game())
