@@ -5,6 +5,8 @@ import time
 POSITIVE_RESPONSES = ['Yes', 'yes', 'Sure', 'Why not', 'Yep', 'Yes please']
 NEGATIVE_RESPONSES = ['Nope', 'No', 'no', 'Nah', 'No way', 'No thanks']
 COIN_OPTIONS = ['heads', 'tails']
+all_user_choices = []
+previous_coin_flips = []
 
 
 # Function to strip user inputs for use in different functions throughout the game
@@ -51,11 +53,9 @@ def user_choice_heads_or_tails():
 
 # Function to flip the coin and return winner or loser
 def coin_flip_game(user_input):
-    all_user_choices = []
-    all_user_choices.append(user_input)
-    past_flips = []
     flip = random.choice(COIN_OPTIONS)
-    past_flips.append(flip)
+    all_user_choices.append(user_input)
+    previous_coin_flips.append(flip)
     print("And the coin says...\n..\n.\n")
     time.sleep(3)
     print(flip)
@@ -75,20 +75,21 @@ def play_a_game():
     play_game(answer)
 
 def replay_game():
+    counting_coin_flips(previous_coin_flips)
     user_answer = input("Would you like to play again? \n")
     answer = verify_user_response(user_answer)
     play_game(answer)
 
+
+# Function to count coin flips - take a list of 'Heads' or 'Tails' and will return the count
+def counting_coin_flips(previous_coin_flips):
+    count_heads = 0
+    count_tails = 0
+    for flip in previous_coin_flips:
+        if flip == 'heads':
+            count_heads += 1
+        else:
+            count_tails += 1
+    print("So far the coin has flipped {} Heads and {} Tails".format(count_heads, count_tails))
+
 play_a_game()
-
-
-# #function to count coin flips - take a list of 'Heads' or 'Tails' and will return the count
-# def counting_coin_flips(past_flips):
-#     count_heads = 0
-#     count_tails = 0
-#     for flip in past_flips:
-#         if flip == 'Heads':
-#             count_heads += 1
-#         elif flip == 'Tails':
-#             count_tails += 1
-#     return count_heads, count_tails
