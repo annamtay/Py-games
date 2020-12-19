@@ -4,24 +4,49 @@ import time
 # Defining global variables for the game
 POSITIVE_RESPONSES = ['Yes', 'yes', 'Sure', 'Why not', 'Yep', 'Yes please']
 NEGATIVE_RESPONSES = ['Nope', 'No', 'no', 'Nah', 'No way', 'No thanks']
-ACCEPTED_RESPONSES = POSITIVE_RESPONSES + NEGATIVE_RESPONSES
 COIN_OPTIONS = ['heads', 'tails']
 
 
+# Function to strip user inputs for use in different functions throughout the game
+def stripping_answer(answer):
+    stripped_answer = answer.strip()
+    final_answer = stripped_answer.lower()
+    return final_answer
+
+
 # Function to verify if a user wants to play a game
-def yes_or_no():
-    user_answer = input("Would you like to play a game? \n")
-    stripped_answer = user_answer.strip()
-    answer = stripped_answer.lower()
+def verify_user_response(user_answer):
+    answer = stripping_answer(user_answer)
     if answer in POSITIVE_RESPONSES:
         print("Woohoo let\'s play")
         return "yes"
     elif answer in NEGATIVE_RESPONSES:
-        print("Oh well.. I gues that is game over!")
+        print("Oh well.. I guess that is game over!")
         return "no"
-    elif answer not in ACCEPTED_RESPONSES:
+    else:
         print("Sorry I don\'t understand your answer. Please type yes or no.")
-        return yes_or_no()
+        return "unknown"
+
+
+def play_game(answer):
+    if answer == 'yes':
+        choice = user_choice_heads_or_tails()
+        coin_flip_game(choice)
+    elif answer == 'no':
+        return "Thanks for playing!"
+    else:
+        play_a_game()
+
+
+# Function to allow the user to input their choice in 'heads or tails' game
+def user_choice_heads_or_tails():
+    user_choice = input("Heads or Tails? \n")
+    choice = stripping_answer(user_choice)
+    if choice in COIN_OPTIONS:
+        return choice
+    else:
+        print("Sorry I don\'t understand your answer. Please type heads of tails.")
+        return user_choice_heads_or_tails()
 
 
 # Function to flip the coin and return winner or loser
@@ -41,30 +66,14 @@ def coin_flip_game(user_input):
         print("Unlucky - maybe you\'ll win next time :(")
 
 
-# Function to allow the user to input their choice in 'heads or tails' game
-def user_choice_heads_or_tails():
-    user_choice = input("Heads or Tails? \n")
-    choice_stripped = user_choice.strip()
-    choice = choice_stripped.lower()
-    if choice in COIN_OPTIONS:
-        return choice
-    elif choice not in COIN_OPTIONS:
-        print("Sorry I don\'t understand your answer. Please type heads of tails.")
-        return user_choice_heads_or_tails()
-
-
-# Function to play a game
+# Function to start the gam
 def play_a_game():
-    print("Welcome to TayTay's playhouse! It's full of fun and games!")
-    answer = yes_or_no()
-    if answer == 'yes':
-        choice = user_choice_heads_or_tails()
-        coin_flip_game(choice)
-    return "Thanks for playing!"
+    user_answer = input("Would you like to play a game? \n")
+    answer = verify_user_response(user_answer)
+    play_game(answer)
 
 
-
-print(play_a_game())
+play_a_game()
 
 
 # #function to count coin flips - take a list of 'Heads' or 'Tails' and will return the count
