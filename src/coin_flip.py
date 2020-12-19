@@ -64,6 +64,8 @@ def coin_flip_game(user_input):
         print("We have a Winner!!!")
     else:
         print("Unlucky - maybe you\'ll win next time :(")
+    time.sleep(1)
+    replay_game()
 
 
 # Function to start the gam
@@ -72,6 +74,10 @@ def play_a_game():
     answer = verify_user_response(user_answer)
     play_game(answer)
 
+def replay_game():
+    user_answer = input("Would you like to play again? \n")
+    answer = verify_user_response(user_answer)
+    play_game(answer)
 
 play_a_game()
 
