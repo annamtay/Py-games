@@ -2,8 +2,8 @@ import random
 import time
 
 # Defining global variables for the game
-POSITIVE_RESPONSES = ['Yes', 'yes', 'Sure', 'Why not', 'Yep', 'Yes please']
-NEGATIVE_RESPONSES = ['Nope', 'No', 'no', 'Nah', 'No way', 'No thanks']
+POSITIVE_RESPONSES = ['yes', 'sure', 'why not', 'yep', 'yes please', 'yeah']
+NEGATIVE_RESPONSES = ['nope', 'no', 'nah', 'no way', 'no thanks']
 COIN_OPTIONS = ['heads', 'tails']
 all_user_choices = []
 previous_coin_flips = []
