@@ -1,6 +1,11 @@
 import random
 import time
 
+'''
+A game of heads or tails built without using a tutorial. 
+Applying concepts learned via Codeacademy.
+'''
+
 # Defining global variables for the game
 POSITIVE_RESPONSES = ['yes', 'sure', 'why not', 'yep', 'yes please', 'yeah']
 NEGATIVE_RESPONSES = ['nope', 'no', 'nah', 'no way', 'no thanks']
@@ -87,10 +92,12 @@ def counting_coin_flips(previous_coin_flips):
             count_tails += 1
     print("So far the coin has flipped {} Heads and {} Tails".format(count_heads, count_tails))
 
+
 # Function to start the gam
 def play_a_game():
     user_answer = input("Would you like to play a game? \n")
     verified_answer = verify_user_response(user_answer)
     play_game(verified_answer)
+
 
 play_a_game()
